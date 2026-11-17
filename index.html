@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f8f6">
+    <meta name="description" content="A calm, private-first space to understand your money.">
+    <title>pennywise — your money, in perspective</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="#" aria-label="Pennywise home" data-page="dashboard">
+          <span class="brand-mark" aria-hidden="true">p</span>
+          <span>pennywise<span class="brand-period">.</span></span>
+        </a>
+        <div class="workspace-label">YOUR SPACE</div>
+        <nav class="main-nav" aria-label="Main navigation">
+          <button class="nav-link active" type="button" data-page="dashboard"><span class="nav-icon">◫</span> Overview</button>
+          <button class="nav-link" type="button" data-page="transactions"><span class="nav-icon">↔</span> Transactions</button>
+          <button class="nav-link" type="button" data-page="budgets"><span class="nav-icon">◉</span> Budgets</button>
+          <button class="nav-link" type="button" data-page="goals"><span class="nav-icon">◎</span> Savings goals</button>
+          <button class="nav-link" type="button" data-page="reports"><span class="nav-icon">▥</span> Reports</button>
+        </nav>
+        <div class="sidebar-spacer"></div>
+        <div class="privacy-card">
+          <span class="privacy-icon" aria-hidden="true">✳</span>
+          <strong>Your money stays yours.</strong>
+          <p>Your data is saved only in this browser.</p>
+        </div>
+        <button class="nav-link settings-link" type="button" data-page="settings"><span class="nav-icon">⚙</span> Settings</button>
+        <div class="profile">
+          <div class="avatar">A</div>
+          <div class="profile-copy"><strong>Alex Morgan</strong><span>Personal account</span></div>
+          <span class="profile-menu" aria-hidden="true">···</span>
+        </div>
+      </aside>
+
+      <main class="main-area">
+        <header class="topbar">
+          <button class="mobile-menu" type="button" id="menu-toggle" aria-label="Open navigation">☰</button>
+          <div class="breadcrumb"><span>My finances</span><span class="crumb-divider">/</span><strong id="page-crumb">Overview</strong></div>
+          <div class="topbar-actions">
+            <button class="icon-button notification-button" type="button" aria-label="Notifications">♧<span class="notification-dot"></span></button>
+            <button class="avatar top-avatar" type="button" aria-label="Account menu">A</button>
+          </div>
+        </header>
+        <div id="app-content" class="content" aria-live="polite"></div>
+        <footer class="footer-note">Made for clarity, not financial advice. <span>·</span> Your data stays on this device.</footer>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modal-backdrop" hidden>
+      <section class="transaction-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-heading">
+          <div><span class="eyebrow">QUICK ADD</span><h2 id="modal-title">Add a transaction</h2></div>
+          <button class="icon-button close-modal" type="button" aria-label="Close dialog">×</button>
+        </div>
+        <form id="transaction-form">
+          <div class="type-toggle" role="group" aria-label="Transaction type">
+            <button type="button" class="type-option selected" data-type="expense">Expense</button>
+            <button type="button" class="type-option" data-type="income">Income</button>
+          </div>
+          <label class="field-label" for="amount">Amount</label>
+          <div class="amount-input"><span>₹</span><input id="amount" name="amount" type="number" min="0.01" step="0.01" placeholder="0.00" required></div>
+          <div class="form-grid">
+            <label class="field-label">Category
+              <select name="category" id="category" required></select>
+            </label>
+            <label class="field-label">Account
+              <select name="account" required><option>Everyday account</option><option>Cash wallet</option><option>Savings account</option></select>
+            </label>
+            <label class="field-label">Date
+              <input name="date" id="transaction-date" type="date" required>
+            </label>
+            <label class="field-label">Note <span class="optional">(optional)</span>
+              <input name="note" type="text" maxlength="80" placeholder="What was it for?">
+            </label>
+          </div>
+          <div class="modal-actions"><button class="button button-quiet close-modal" type="button">Cancel</button><button class="button button-primary" type="submit">Save transaction <span>↗</span></button></div>
+        </form>
+      </section>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
